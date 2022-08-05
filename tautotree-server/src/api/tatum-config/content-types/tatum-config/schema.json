@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tatum_configs",
+  "info": {
+    "singularName": "tatum-config",
+    "pluralName": "tatum-configs",
+    "displayName": "TatumConfig",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "api_key": {
+      "type": "password",
+      "required": true,
+      "private": true
+    }
+  }
+}
