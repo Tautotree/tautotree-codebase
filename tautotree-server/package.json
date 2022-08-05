@@ -11,10 +11,13 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.3.2",
-    "@strapi/plugin-users-permissions": "4.3.2",
     "@strapi/plugin-i18n": "4.3.2",
-    "better-sqlite3": "7.4.6"
+    "@strapi/plugin-users-permissions": "4.3.2",
+    "@strapi/strapi": "4.3.2",
+    "@tatumio/tatum": "^1.35.13",
+    "alchemy-sdk": "^2.0.1",
+    "better-sqlite3": "7.4.6",
+    "busboy": "^1.6.0"
   },
   "author": {
     "name": "A Strapi developer"
