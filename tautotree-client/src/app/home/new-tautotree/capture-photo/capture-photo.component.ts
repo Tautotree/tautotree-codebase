@@ -6,19 +6,32 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
   templateUrl: './capture-photo.component.html',
   styleUrls: ['./capture-photo.component.css']
 })
-export class CapturePhotoComponent implements OnInit, AfterViewInit {
+export class CapturePhotoComponent implements OnInit {
 
   @ViewChild('videoElement') videoElement!: ElementRef;  
-  video!: HTMLVideoElement;
 
-  constructor(private tautoTree: TautotreeService) { }
+  constructor(private tautoTree: TautotreeService) {
+    this.tautoTree.currentState = 0;
+  }
 
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
-      this.video = this.videoElement.nativeElement;
-      this.tautoTree.currentState = 0;
+  getLoadedData(event: any) {
+    let fileReader = new FileReader()
+    let file = event.srcElement.files[0];
+    console.log(file.name)
+    if (file && file.name) {
+      this.tautoTree.treeInstance.name = file.name;
+    }
+    fileReader.readAsArrayBuffer(file) 
+    fileReader.onload = () => {
+      let blob = new Blob(fileReader.result? [fileReader.result]: [])
+      if (blob) {
+        console.log(blob);
+        this.tautoTree.treeInstance.image = blob
+      }
+    } 
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GlobalService } from 'src/app/global.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { GlobalService } from 'src/app/global.service';
 })
 export class MyTreesComponent implements OnInit {
 
-  constructor(public g: GlobalService) { }
+  constructor(public g: GlobalService, public route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }

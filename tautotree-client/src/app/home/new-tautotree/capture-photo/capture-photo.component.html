@@ -1,4 +1,6 @@
 <div class="cp-container" >
-    <video #videoElement></video>
-    <button nz-button nzType="primary"><a routerLink="../view-photo">Capture</a></button>
+    <input type="file" accept="image/*" capture="camera" (change)="getLoadedData($event)">
+    <button nz-button nzType="primary">
+        <a routerLink="../view-photo">Capture</a>
+    </button>
 </div>

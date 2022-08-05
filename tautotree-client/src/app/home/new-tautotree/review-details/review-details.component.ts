@@ -6,16 +6,13 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
   templateUrl: './review-details.component.html',
   styleUrls: ['./review-details.component.css']
 })
-export class ReviewDetailsComponent implements OnInit, AfterViewInit {
+export class ReviewDetailsComponent implements OnInit {
 
-  constructor(private tautoTree: TautotreeService) { }
-
-  ngOnInit(): void {
-    // this.tautoTree.currentState = 2;
+  constructor(private tautoTree: TautotreeService) { 
+    this.tautoTree.currentState = 2;
   }
 
-  ngAfterViewInit(): void {
-    this.tautoTree.currentState = 3;
+  ngOnInit(): void {
   }
 
 }
