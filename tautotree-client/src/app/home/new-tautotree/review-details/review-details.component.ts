@@ -10,6 +10,9 @@ export class ReviewDetailsComponent implements OnInit {
 
   constructor(private tautoTree: TautotreeService) { 
     this.tautoTree.currentState = 2;
+    console.log(tautoTree.treeInstance)
+
+    
   }
 
   ngOnInit(): void {
