@@ -21,6 +21,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { TreesListComponent } from './home/my-trees/trees-list/trees-list.component';
 import { TreesMapComponent } from './home/my-trees/trees-map/trees-map.component';
 import { MyTreesComponent } from './home/my-trees/my-trees.component';
+import { MapComponent } from './map/map.component';
 
 registerLocaleData(en);
 
@@ -33,6 +34,7 @@ registerLocaleData(en);
     TreesListComponent,
     TreesMapComponent,
     MyTreesComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { TreesMapComponent } from './home/my-trees/trees-map/trees-map.component
 import { CapturePhotoComponent } from './home/new-tautotree/capture-photo/capture-photo.component';
 import { ReviewDetailsComponent } from './home/new-tautotree/review-details/review-details.component';
 import { ViewPhotoComponent } from './home/new-tautotree/view-photo/view-photo.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,7 +15,7 @@ const routes: Routes = [
     {path: 'my-trees', component: MyTreesComponent, children: [
       {path: '', redirectTo: 'list', pathMatch: 'full'},
       {path: 'list', component: TreesListComponent},
-      {path: 'map', component: TreesMapComponent},
+      {path: 'map', component: MapComponent},
     ]},
     {path: 'new-tautotree', children: [
       {path: '', redirectTo: 'capture-photo', pathMatch: 'full'},
