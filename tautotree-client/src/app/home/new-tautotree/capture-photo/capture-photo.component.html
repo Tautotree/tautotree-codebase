@@ -1,4 +1,5 @@
 <div class="cp-container" >
+    <input type="file" accept="image/*" capture="camera" (change)="getLoadedData($event)">
     <button nz-button nzType="primary">
         <a routerLink="../view-photo">Capture</a>
     </button>

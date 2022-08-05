@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { GlobalService } from './global.service';
+import { TautotreeService } from './services/tautotree.service';
 
 declare let ethereum: any;
 
@@ -12,7 +13,7 @@ declare let ethereum: any;
 })
 export class AppComponent implements AfterViewInit, OnInit {
 
-  constructor(private g: GlobalService) {}
+  constructor(private g: GlobalService, private tautoTree: TautotreeService) {}
 
   ngOnInit(): void {
     ethereum.request({ method: 'eth_requestAccounts' }).then((x: any) => {
@@ -31,6 +32,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position)=>{
+        this.tautoTree.treeInstance.lat = position.coords.latitude
+        this.tautoTree.treeInstance.long = position.coords.longitude
         console.log(position)
       })
     } else {

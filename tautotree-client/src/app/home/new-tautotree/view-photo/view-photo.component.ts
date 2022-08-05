@@ -8,12 +8,20 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
 })
 export class ViewPhotoComponent implements OnInit {
 
-  constructor(private tautoTree: TautotreeService) {
+  constructor(public tautoTree: TautotreeService) {
     this.tautoTree.currentState = 1;
   }
 
   ngOnInit(): void {
 
+  }
+
+  convertBlobToUrl(obj: any) {
+    console.log(obj)
+    var urlCreator = window.URL || window.webkitURL;
+    var url = urlCreator.createObjectURL(obj)
+    console.log(url)
+    return url;
   }
 
 }

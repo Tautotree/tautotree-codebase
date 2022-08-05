@@ -17,4 +17,21 @@ export class CapturePhotoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getLoadedData(event: any) {
+    let fileReader = new FileReader()
+    let file = event.srcElement.files[0];
+    console.log(file.name)
+    if (file && file.name) {
+      this.tautoTree.treeInstance.name = file.name;
+    }
+    fileReader.readAsArrayBuffer(file) 
+    fileReader.onload = () => {
+      let blob = new Blob(fileReader.result? [fileReader.result]: [])
+      if (blob) {
+        console.log(blob);
+        this.tautoTree.treeInstance.image = blob
+      }
+    } 
+  }
+
 }
