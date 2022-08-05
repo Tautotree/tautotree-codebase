@@ -1,0 +1,32 @@
+.nt-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.nt-header {
+    display: flex;
+    justify-content: center;
+    padding: 0px 15px;
+    align-items: center;
+    flex: 1;
+    max-height: 50px;
+}
+
+.nt-header button {
+    font-size: large;
+}
+
+nz-steps {
+    flex: 1;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.nt-body {
+    flex: 9;
+    border: 1px solid black;
+}
