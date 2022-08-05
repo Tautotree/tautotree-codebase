@@ -1,0 +1,33 @@
+.mt-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.mt-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 15px;
+    align-items: center;
+    flex: 1;
+    max-height: 50px;
+}
+
+.mt-header button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: beige;
+    border: none;
+}
+
+.mt-outlet {
+    flex: 8;
+    border: 1px solid aqua;
+}
+
+.mt-nz-tabs {
+    flex: 1;
+    max-height: 50px;
+}
