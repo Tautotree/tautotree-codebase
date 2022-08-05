@@ -24,6 +24,9 @@ import { MyTreesComponent } from './home/my-trees/my-trees.component';
 import { NewTautotreeComponent } from './home/new-tautotree/new-tautotree.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { MapComponent } from './map/map.component';
+import { TreeDetailComponent } from './tree-detail/tree-detail.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
+
 
 registerLocaleData(en);
 
@@ -38,6 +41,7 @@ registerLocaleData(en);
     MyTreesComponent,
     NewTautotreeComponent,
     MapComponent,
+    TreeDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ registerLocaleData(en);
     NzAvatarModule,
     NzTabsModule,
     NzRadioModule,
-    NzStepsModule
+    NzStepsModule,
+    NzCardModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -17,7 +17,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     ethereum.request({ method: 'eth_requestAccounts' }).then((x: any) => {
       this.g.accounts = x;
-
+      this.g.e.next('logged!');
     })
     
   }

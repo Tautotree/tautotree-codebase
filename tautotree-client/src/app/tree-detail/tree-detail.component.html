@@ -1,0 +1,11 @@
+<!-- <p>{{global.trees[id] | json}}</p> -->
+
+
+<nz-card nzHoverable style="width:100%; margin: 10px;" [nzCover]="coverTemplate">
+    <nz-card-meta [nzTitle]="global.trees[id].rawMetadata.name" [nzDescription]="global.trees[id].rawMetadata.description"></nz-card-meta>
+  </nz-card>
+<ng-template #coverTemplate>
+    <img alt="example" [src]="global.trees[id].media[0].gateway" />
+</ng-template>
+
+<app-map [locations]='[global.trees[id].rawMetadata.name, global.trees[id].rawMetadata.latitude, global.trees[id].rawMetadata.longitude]'></app-map>

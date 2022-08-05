@@ -1,22 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
 
 const componentType: any = "Widget";
-const isWebcomponent = false;
-if(isWebcomponent){
-    customElements.whenDefined("leaflet-new2").then(_=>{
-        // readyElement();
-    })
-}else{
-    // readyElement();
-}
 
-function readyElement(){
-    const element = document.createElement('leaflet-new2');
-    element.id="el-leaflet-new2";
-    document.body.appendChild(element);
-    setInnerText(element);
-    setAttr(element);
-}
+declare let L: any;
+
 function setInnerText(element: any){
     const text = "";
     if(text){
@@ -57,12 +44,32 @@ function parseDataAttribute(attributes: any){
 })
 export class MapComponent implements OnInit, AfterViewInit {
 
+  position: any = { lat: '', long: ''} 
+
+  @Input() locations = [
+    ["LOCATION_1", 11.8166, 122.0942],
+    ["LOCATION_2", 11.9804, 121.9189],
+    ["LOCATION_3", 10.7202, 122.5621],
+    ["LOCATION_4", 11.3889, 122.6277],
+    ["LOCATION_5", 10.5929, 122.6325]
+  ];
+
   constructor(private el: ElementRef) { }
   ngAfterViewInit(): void {
     // customElements.whenDefined("leaflet-new2").then(_=>{
     //   readyElement();
     // });
-    const element = document.createElement('leaflet-new2');
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position)=>{
+        console.log('position', position);
+        this.position.lat = position.coords.latitude
+        this.position.long = position.coords.latitude
+      })
+    } else {
+      console.log("No permission")
+    }
+    const element: any = document.createElement('leaflet-new2');
     element.style.width = '100%';
     element.style.height = '100%';
     element.style.display = 'block';
@@ -71,6 +78,18 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.el.nativeElement.querySelector('#map').appendChild(element);
     setInnerText(element);
     setAttr(element);
+
+    setTimeout(() => {
+      for (var i = 0; i < this.locations.length; i++) {
+        let marker = new L.marker([this.locations[i][1], this.locations[i][2]])
+          .bindPopup(this.locations[i][0])
+          .addTo((element as any)._map);
+      }
+
+      element._map.panTo(new L.LatLng(this.locations[0][1], this.locations[0][2]));
+      element._map.setZoom(9)
+    }, 3000)
+    
   }
 
   ngOnInit(): void {
