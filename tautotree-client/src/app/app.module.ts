@@ -23,6 +23,7 @@ import { TreesMapComponent } from './home/my-trees/trees-map/trees-map.component
 import { MyTreesComponent } from './home/my-trees/my-trees.component';
 import { NewTautotreeComponent } from './home/new-tautotree/new-tautotree.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { MapComponent } from './map/map.component';
 
 registerLocaleData(en);
 
@@ -36,6 +37,7 @@ registerLocaleData(en);
     TreesMapComponent,
     MyTreesComponent,
     NewTautotreeComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

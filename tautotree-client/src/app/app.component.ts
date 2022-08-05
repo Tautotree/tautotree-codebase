@@ -1,17 +1,32 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+import { GlobalService } from './global.service';
+
+declare let ethereum: any;
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
+
+  constructor(private g: GlobalService) {}
+
+  ngOnInit(): void {
+    ethereum.request({ method: 'eth_requestAccounts' }).then((x: any) => {
+      this.g.accounts = x;
+
+    })
+    
+  }
   title = 'tautotree-client';
   @ViewChild('videoElement') videoElement!: ElementRef;  
   video!: HTMLVideoElement;
 
   ngAfterViewInit() {
-    this.video = this.videoElement.nativeElement as HTMLVideoElement;
+    // this.video = this.videoElement.nativeElement as HTMLVideoElement;
     this.start();
 
     if (navigator.geolocation) {
@@ -44,23 +59,7 @@ export class AppComponent implements AfterViewInit {
         // this.video.srcObject = stream
       // this.video.src = window.URL.createObjectURL(stream);
       this.video.play();
-
-      
     });
   }
-
-  // capture() {
-  //   this.drawImageToCanvas(this.videoElement.nativeElement);
-  //   this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
-  //   this.isCaptured = true;
-  // }
-
-  // drawImageToCanvas(image: any) {
-  //   this.canvas.nativeElement
-  //     .getContext("2d")
-  //     .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
-  // }
-
-
 
 }
