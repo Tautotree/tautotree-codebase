@@ -6,6 +6,14 @@
     <div class="mt-outlet">
         <router-outlet></router-outlet>
     </div>
+    <nz-radio-group [(ngModel)]="route.url" nzButtonStyle="solid">
+        <label nz-radio-button nzValue="List">
+            <a routerLink="list">List</a>
+        </label>
+        <label nz-radio-button nzValue="Map">
+            <a routerLink="map">Map</a>
+        </label>
+    </nz-radio-group>
     <nz-tabset nzTabPosition="bottom" nzCentered="true" class="mt-nz-tabs">
         <nz-tab nzTitle="My-Trees"></nz-tab>
         <nz-tab nzTitle="Marketplace"></nz-tab>

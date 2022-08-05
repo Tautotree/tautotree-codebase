@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
 import { TautotreeService } from 'src/app/services/tautotree.service';
 
 @Component({
@@ -6,16 +6,14 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
   templateUrl: './view-photo.component.html',
   styleUrls: ['./view-photo.component.css']
 })
-export class ViewPhotoComponent implements OnInit, AfterViewInit {
+export class ViewPhotoComponent implements OnInit {
 
-  constructor(private tautoTree: TautotreeService) { }
-
-  ngOnInit(): void {
-    
+  constructor(private tautoTree: TautotreeService) {
+    this.tautoTree.currentState = 1;
   }
 
-  ngAfterViewInit(): void {
-    this.tautoTree.currentState = 2;
+  ngOnInit(): void {
+
   }
 
 }

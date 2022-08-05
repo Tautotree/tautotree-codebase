@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class TautotreeService {
 
-currentState: number = 0;
+  currentState: number = 0;
 
   constructor() { }
+
 }

@@ -6,19 +6,15 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
   templateUrl: './capture-photo.component.html',
   styleUrls: ['./capture-photo.component.css']
 })
-export class CapturePhotoComponent implements OnInit, AfterViewInit {
+export class CapturePhotoComponent implements OnInit {
 
   @ViewChild('videoElement') videoElement!: ElementRef;  
-  video!: HTMLVideoElement;
 
-  constructor(private tautoTree: TautotreeService) { }
-
-  ngOnInit(): void {
+  constructor(private tautoTree: TautotreeService) {
+    this.tautoTree.currentState = 0;
   }
 
-  ngAfterViewInit(): void {
-      this.video = this.videoElement.nativeElement;
-      this.tautoTree.currentState = 0;
+  ngOnInit(): void {
   }
 
 }

@@ -30,3 +30,10 @@
     flex: 1;
     max-height: 50px;
 }
+
+nz-radio-group {
+    position: absolute;
+    top: 9%;
+    left: 65%;
+    z-index: 5;
+}
