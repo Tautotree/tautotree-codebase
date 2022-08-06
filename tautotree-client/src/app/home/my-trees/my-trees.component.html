@@ -1,0 +1,26 @@
+<div class="mt-container">
+    <header class="mt-header">
+        <div>TautoTree 🌳</div>
+        <button nz-button nzType="primary" nzShape="circle"></button>
+    </header>
+    <div class="mt-outlet">
+        <router-outlet></router-outlet>
+    </div>
+    <nz-radio-group [(ngModel)]="route.url" nzButtonStyle="solid">
+        <label nz-radio-button nzValue="List">
+            <a routerLink="list">List</a>
+        </label>
+        <label nz-radio-button nzValue="Map">
+            <a routerLink="map">Map</a>
+        </label>
+    </nz-radio-group>
+    <button class="btn-add" nz-button nzType="primary" nzShape="circle">
+        <a routerLink="/home/new-tautotree">
+            <span class="material-symbols-outlined">add</span>
+        </a>
+    </button>
+    <nz-tabset nzTabPosition="bottom" nzCentered="true" class="mt-nz-tabs">
+        <nz-tab nzTitle="My-Trees"></nz-tab>
+        <nz-tab nzTitle="Marketplace"></nz-tab>
+    </nz-tabset>
+</div>

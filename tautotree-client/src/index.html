@@ -6,8 +6,142 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+   crossorigin=""></script>
+   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
   <app-root></app-root>
+  <script type="module">
+
+    import { LitElement, html, css } from 'https://unpkg.com/lit@2.2.2/index.js?module';
+            class CustomComponent extends LitElement{
+                container = null;
+                customEventsRegister = [];
+                static get properties(){
+                    return {
+                        name:{type:"string"}
+                    }
+                }
+
+                onInit = ()=>{
+    let _self = this;
+    _self.leaflet = L;
+    _self._map = _self.leaflet.map(this).setView([51.505, -0.09],3);
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoicmFobWFuNTc5NiIsImEiOiJja3RqczRnc3cxZXUxMndxamlzdmRrN2pnIn0.9HWiTcGp0jdCsIINGm8pTQ'
+    }).addTo(_self._map);
+    
+    // L.Control.geocoder().addTo(_self._map);
+    // let leftside = this.querySelector(".leaflet-top.leaflet-right");
+    // let inp = document.createElement("input");
+    // inp.setAttribute("class" , "leaflet-control");
+    // inp.click(function(event){
+    //     event.stopPropagation();
+    // })
+    // leftside.append(inp)
+     var blueIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+    
+    _self.marker = L.marker([51.5, -0.09] , { icon: blueIcon}).addTo(_self._map);
+    _self._map.on("click",function(ev){
+        let lat = (ev.latlng.lat);
+        let lng = (ev.latlng.lng);
+        var newLatLng = new L.LatLng(lat, lng);
+        _self.marker.setLatLng(newLatLng);
+        _self._map.setView(newLatLng);
+    })
+    _self._map.on("contextmenu",function(ev){
+            console.log(ev);
+    })
+}
+onDestroy = ()=>{console.log("On component destroy")}
+onChange = (dataAttributes,newValue,oldValue)=>{
+	switch(dataAttributes){}}
+
+
+
+
+                get name() {
+                    return this._name;
+                }
+
+                set name(val) {
+                  try{
+                    this._name = val;
+                    
+                    
+                    this.onChange && this.onChange('name',val,this._name);
+                    this.requestUpdate();
+                  }
+                  catch(error){
+                      console.log(error);
+                  }
+                }
+render() {
+                    const compStyles = "";
+                    const markUp = "";
+                    return html`
+${compStyles}
+${markUp}
+`
+                }
+
+                firstUpdated(changedProperties){
+                    try{
+                        //this.container = this.shadowRoot.querySelector("#container");
+                        this.container = this.querySelector("#container");
+                    }catch(error){
+                        console.error(error)
+                    }
+                    try{
+                        
+                        
+                        this.onInit && this.onInit();
+                    }
+                    catch(error){
+                        console.error(error);
+                    }
+                }
+                constructor(){
+                    super();
+                }
+                emit(eventName,value){
+                    if(this.customEventsRegister.indexOf(eventName) > -1){
+                        const event = new CustomEvent(eventName,{bubbles:true,composed:true,detail:value})
+                        this.dispatchEvent(event);
+                    }else{
+                        console.error('there is no such event registered :::: '+eventName);
+                    }
+                }
+                disconnectedCallback(){
+                    this.onDestroy && this.onDestroy();
+                }
+                createRenderRoot() {
+                    return this;
+                }
+                
+            }
+            customElements.define("leaflet-new2", CustomComponent);
+  </script>
 </body>
 </html>
