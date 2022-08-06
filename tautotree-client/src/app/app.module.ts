@@ -27,6 +27,9 @@ import { MapComponent } from './map/map.component';
 import { TreeDetailComponent } from './tree-detail/tree-detail.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 registerLocaleData(en);
 
@@ -56,7 +59,10 @@ registerLocaleData(en);
     NzRadioModule,
     NzStepsModule,
     NzCardModule,
-    NzUploadModule
+    NzUploadModule,
+    NzAffixModule,
+    NzSegmentedModule,
+    NzTypographyModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

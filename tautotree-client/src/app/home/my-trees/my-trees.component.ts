@@ -9,6 +9,11 @@ import { GlobalService } from 'src/app/global.service';
 })
 export class MyTreesComponent implements OnInit {
 
+  options = [
+    { label: '📋 List', value: 'List'},
+    { label: '🗺 Map', value: 'Map' }
+  ];
+
   constructor(public g: GlobalService, public route: ActivatedRoute) { }
 
   ngOnInit(): void {

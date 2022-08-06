@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TautotreeService } from 'src/app/services/tautotree.service';
 
 @Component({
@@ -6,7 +6,9 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
   templateUrl: './review-details.component.html',
   styleUrls: ['./review-details.component.css']
 })
-export class ReviewDetailsComponent implements OnInit {
+export class ReviewDetailsComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('image') image!: ElementRef
 
   constructor(public tautoTree: TautotreeService) { 
     this.tautoTree.currentState = 2;
@@ -16,6 +18,10 @@ export class ReviewDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+      this.tautoTree.convertBlobToUrl(this.tautoTree.treeInstance.image, this.image)
   }
 
 }

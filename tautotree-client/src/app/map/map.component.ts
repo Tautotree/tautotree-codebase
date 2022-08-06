@@ -56,6 +56,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(private el: ElementRef, public global: GlobalService) { 
+    this.global.trees.forEach((element: any) => {
+        this.locations.push([
+          element.name, element.lat, element.long
+        ])
+    });
     this.locations = global.trees.map((x: any) => ([
       x.rawMetadata.name, 
       x.rawMetadata.latitude, 

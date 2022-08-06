@@ -1,6 +1,8 @@
 <div class="vp-container" >
+    <h2>Uploaded Image</h2>
     <img #image [src]="" alt=""/>
-    <textarea placeholder="Enter description" *ngIf="treePercent >= 0.5" rows="4" nz-input [(ngModel)]="tautoTree.treeInstance.description"></textarea>
+    <h2 *ngIf="treePercent >= 0.5" >Description</h2>
+    <textarea placeholder="Enter description" *ngIf="treePercent >= 0.5" rows="3" nz-input [(ngModel)]="tautoTree.treeInstance.description"></textarea>
     <p *ngIf="loading">Checking if the posted image is a tree....</p>
     <p *ngIf="!loading && (treePercent < 0.5)">Not a tree, please upload a tree with location enabled</p>
     <p *ngIf="!loading && (treePercent >= 0.5)">Identified as tree</p>
