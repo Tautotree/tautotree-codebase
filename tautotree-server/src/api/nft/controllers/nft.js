@@ -29,8 +29,8 @@ module.exports = {
         metaData.latitude       = ctx.request.body.lat;
         metaData.longitude      = ctx.request.body.long;
         let walletAddress       = ctx.request.body.walletAddress;
-        ctx.set('Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
-        ctx.set('X-Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
+        ctx.set('Access-Control-Allow-Origin', '*');
+        ctx.set('X-Access-Control-Allow-Origin', '4200-tautotree-tautotreecode-dk9pxl3hvnd.ws-us59.gitpod.io');
         return this.uploadFileToIPFS(file, metaData, walletAddress);
     },
 
@@ -112,8 +112,8 @@ module.exports = {
         let walletAddress       = ctx.request.query.walletAddress;
         
         console.log("Fetching NFTs for Wallet:" + walletAddress);
-        ctx.set('Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
-        ctx.set('X-Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
+        ctx.set('Access-Control-Allow-Origin', '*');
+        ctx.set('X-Access-Control-Allow-Origin', '4200-tautotree-tautotreecode-dk9pxl3hvnd.ws-us59.gitpod.io');
         return alchemy.nft.getNftsForOwner(walletAddress).then((nfts)=>{
             console.log(nfts);
             return nfts;
