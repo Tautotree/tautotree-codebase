@@ -4,11 +4,13 @@
  * NFT Controller.
  */
 
-const {ipfsUpload, mintNFTWithUri, Currency}    = require('@tatumio/tatum');
+const {ipfsUpload, mintNFTWithUri, Currency, burnNFT, transferNFT, getNFTContractAddress }    = require('@tatumio/tatum');
+// const { burnNFT }                               = require('@tatumio/tatum-polygon');
 const {readFileSync}                            = require('fs'); 
 const { Alchemy, Network }                      = require('alchemy-sdk');
 // let upload                  = multer({storage: multer.memoryStorage()})
 const { strapi } = require('@strapi/strapi').factories;
+
 const config = {
     apiKey: process.env.ALCHEMY_API_KEY,
     network: Network.MATIC_MUMBAI,
@@ -27,7 +29,50 @@ module.exports = {
         metaData.latitude       = ctx.request.body.lat;
         metaData.longitude      = ctx.request.body.long;
         let walletAddress       = ctx.request.body.walletAddress;
+        ctx.set('Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
+        ctx.set('X-Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
         return this.uploadFileToIPFS(file, metaData, walletAddress);
+    },
+
+    async deleteNFT(ctx, next) {
+        
+        let contractAddr = ctx.request.query.contractAddress;
+        let walletAddr   = ctx.request.query.walletAddress;
+        let tokenID      = ctx.request.query.tokenID;
+        console.log("Buring NFT: Contract: "+ contractAddr + " token: "+tokenID  + "walletAddr: "+ walletAddr);
+        return burnNFT(true, {
+            chain           : Currency.MATIC,
+            tokenId         : tokenID,
+            // fromPrivateKey  : walletAddr,
+            contractAddress : contractAddr,
+        }).then((burnResponse) => {
+            console.log(burnResponse);
+            return burnResponse;
+        });
+    },
+
+    async sellNFT(ctx, next) {
+        
+        let contractAddr    = ctx.request.query.contractAddress;
+        let toWalletAddr    = ctx.request.query.toWalletAddress;
+        let fromWalletAddr  = ctx.request.query.fromWalletAddress;
+        let tokenID         = ctx.request.query.tokenID;
+        console.log("transfer NFT: Contract: "+ contractAddr + " token: "+tokenID  + "walletAddr: "+ toWalletAddr);
+        return getNFTContractAddress(Currency.MATIC, "0x15aed103d325ac649f4aaf9342c624cef350dbd17c58ec34ea171787165226d4").then((respContract)=>{
+            console.log(respContract);
+            return respContract;
+        })
+        // return transferNFT(true, {
+        //     chain           : Currency.MATIC,
+        //     tokenId         : tokenID,
+        //     // fromPrivateKey  : walletAddr,
+        //     contractAddress : contractAddr,
+        //     to              : toWalletAddr,
+        //     from            : fromWalletAddr,
+        // }).then((transferResponse) => {
+        //     console.log(transferResponse);
+        //     return transferResponse;
+        // });
     },
 
     async uploadFileToIPFS(file, fileMeta, walletAddress){
@@ -48,7 +93,7 @@ module.exports = {
             let metaHash = metaHashResponse.ipfsHash; 
             console.log("MetaHashResponse:" + metaHashResponse);
             console.log(metaHash);
-            return mintNFTWithUri(false, {
+            return mintNFTWithUri(true, {
                 to      : walletAddress,
                 url     : `ipfs://`+metaHash,
                 tokenId : '100000',
@@ -67,6 +112,8 @@ module.exports = {
         let walletAddress       = ctx.request.query.walletAddress;
         
         console.log("Fetching NFTs for Wallet:" + walletAddress);
+        ctx.set('Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
+        ctx.set('X-Access-Control-Allow-Origin', 'tautotree-tautotree-codebase-p7g64r94c6jq5-4200');
         return alchemy.nft.getNftsForOwner(walletAddress).then((nfts)=>{
             console.log(nfts);
             return nfts;
