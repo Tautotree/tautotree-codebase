@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { GlobalService } from '../global.service';
 
 @Injectable({
@@ -42,7 +42,21 @@ export class TautotreeService {
     fetch("http://localhost:1337/api/nfts", requestOptions)
       .then(response => console.log(response.text()))
       .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .catch(error => console.log('error', error))
+  }
+
+  convertBlobToUrl(obj: any, image: ElementRef) {
+    console.log(obj)
+    var urlCreator = window.URL || window.webkitURL;
+    var url = urlCreator.createObjectURL(obj)
+    console.log(url)
+    let fileReader = new FileReader()
+    fileReader.readAsDataURL(obj)
+
+    fileReader.onload = () => {
+      (image.nativeElement as HTMLImageElement).src = fileReader.result as string
+    }
+    return url;
   }
 
 }

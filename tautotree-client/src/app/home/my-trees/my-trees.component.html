@@ -1,19 +1,23 @@
 <div class="mt-container">
     <header class="mt-header">
         <div>TautoTree 🌳</div>
-        <button nz-button nzType="primary" nzShape="circle"></button>
+        <!-- <button nz-button nzType="primary" nzShape="circle"></button> -->
     </header>
+    <nz-tabset nzTabPosition="top" nzCentered="true" class="mt-nz-tabs">
+        <nz-tab nzTitle="My-Trees"></nz-tab>
+        <nz-tab nzTitle="Marketplace" nzDisabled="true"></nz-tab>
+    </nz-tabset>
+    <nz-radio-group class="mt-nz-segmented" [(ngModel)]="route.url" nzButtonStyle="solid">
+        <label nz-radio-button routerLink="./list" nzValue="List">🌲 List</label>
+        <label nz-radio-button routerLink="./map" nzValue="Map">🌏 Map</label>
+    </nz-radio-group>
+    <!-- <nz-segmented class="mt-nz-segmented" [nzOptions]="options"></nz-segmented> -->
     <div class="mt-outlet">
         <router-outlet></router-outlet>
     </div>
-    
-    <button class="btn-add" nz-button nzType="primary" nzShape="circle">
-        <a routerLink="/home/new-tautotree">
+    <nz-affix class="btn-add">
+        <button routerLink="/home/new-tautotree" nz-button nzType="primary" nzShape="circle">
             <span class="material-symbols-outlined">add</span>
-        </a>
-    </button>
-    <nz-tabset nzTabPosition="bottom" nzCentered="true" class="mt-nz-tabs">
-        <nz-tab nzTitle="My-Trees"></nz-tab>
-        <!-- <nz-tab nzTitle="Marketplace"></nz-tab> -->
-    </nz-tabset>
+        </button>
+      </nz-affix>
 </div>

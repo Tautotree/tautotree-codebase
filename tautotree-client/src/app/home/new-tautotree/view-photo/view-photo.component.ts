@@ -17,11 +17,12 @@ export class ViewPhotoComponent implements OnInit, AfterViewInit {
   model: any
   maxPredictions: any;
   treePercent: number = 0;
-  loading = false;
+  loading = true;
 
   constructor(public tautoTree: TautotreeService) {
 
     tmImage.load("./assets/model.json", "./assets/metadata.json").then((model : any) => {
+      this.loading = true;
       this.model = model;
       let maxPredictions = model.getTotalClasses();
       this.maxPredictions = maxPredictions
@@ -62,7 +63,6 @@ export class ViewPhotoComponent implements OnInit, AfterViewInit {
   }
 
   async predict() {
-    this.loading = true
     const prediction = await this.model.predict(this.image.nativeElement);
 
     for (let i = 0; i < this.maxPredictions; i++) {

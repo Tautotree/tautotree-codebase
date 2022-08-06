@@ -5,22 +5,47 @@
     flex-direction: column;
 }
 
+.margin-div-container {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
 /* video {
     width: 80%;
     height: 40%;
     margin: auto;
 } */
 
-input {
+/* input {
     width: fit-content;
     height: fit-content;
     padding: 5px;
     margin: auto;
+} */
+
+/* button {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    margin: auto;
+} */
+
+.margin-div-container > h2 {
+    margin-bottom: 50%;
 }
 
-button {
+.margin-div-container > input {
+    margin: 5%;
+    align-self: center;
+    width: 75%;
+}
+
+.margin-div-container > button {
     width: fit-content;
-    height: fit-content;
-    padding: 5px;
     margin: auto;
+    padding: 5px;
 }

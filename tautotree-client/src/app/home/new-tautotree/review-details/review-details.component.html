@@ -1,4 +1,14 @@
 <div class="rd-container">
     <!-- <img nz-image width="200px" height="200px" [src]="tautoTree.treeInstance.image" alt="" /> -->
-    <button #button nz-button nzType="primary" routerLink="../review-details" (click)="this.tautoTree.postTautoTree()">Submit</button>
+    <h4>Name</h4>
+    <p nz-typography nzEditable [(nzContent)]="tautoTree.treeInstance.name"></p>
+    <h4>Description</h4>
+    <p nz-typography nzEditable [(nzContent)]="tautoTree.treeInstance.description"></p>
+    <!-- <input [value]="tautoTree.treeInstance.name"/> -->
+    <h4>Uploaded Image</h4>
+    <img #image [src]="" alt=""/>
+    <!-- <textarea placeholder="Enter description" rows="3" nz-input [(ngModel)]="tautoTree.treeInstance.description"></textarea> -->
+    <h4>Location</h4>
+    <app-map [locations]="[[tautoTree.treeInstance.name , tautoTree.treeInstance.lat, tautoTree.treeInstance.long]]"></app-map>
+    <button #button nz-button nzType="primary" routerLink="/home" (click)="this.tautoTree.postTautoTree()">Submit</button>
 </div>

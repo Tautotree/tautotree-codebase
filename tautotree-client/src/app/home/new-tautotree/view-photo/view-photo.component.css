@@ -5,6 +5,10 @@
     flex-direction: column;
 }
 
+.vp-container > * {
+    margin: auto;
+}
+
 img {
     width: 80%;
     height: 40%;
@@ -14,7 +18,7 @@ img {
 
 textarea {
     width: 80%;
-    height: 30%;
+    /* height: 30%; */
     margin: auto;
 }
 

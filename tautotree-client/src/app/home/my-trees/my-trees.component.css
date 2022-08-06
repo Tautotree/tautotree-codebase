@@ -7,7 +7,7 @@
 
 .mt-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0px 15px;
     align-items: center;
     flex: 1;
@@ -32,22 +32,26 @@
     max-height: 50px;
 }
 
-nz-radio-group {
-    position: absolute;
-    top: 9%;
-    left: 65%;
+.btn-add {
+    position: fixed;
+    top: 92%;
+    left: 83%;
     z-index: 5;
 }
 
-.btn-add {
-    position: absolute;
-    top: 88%;
-    left: 85%;
+.btn-add button {
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.6rem;
+    margin: auto;
+    color: white;
+    z-index: 5;
+}
+
+.mt-nz-segmented {
+    display: flex;
     margin: auto;
 }
