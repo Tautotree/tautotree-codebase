@@ -8,7 +8,7 @@ import { TautotreeService } from 'src/app/services/tautotree.service';
 })
 export class ReviewDetailsComponent implements OnInit {
 
-  constructor(private tautoTree: TautotreeService) { 
+  constructor(public tautoTree: TautotreeService) { 
     this.tautoTree.currentState = 2;
     console.log(tautoTree.treeInstance)
 
