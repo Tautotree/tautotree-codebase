@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { GlobalService } from '../global.service';
 
 const componentType: any = "Widget";
 
@@ -54,7 +55,13 @@ export class MapComponent implements OnInit, AfterViewInit {
     ["LOCATION_5", 10.5929, 122.6325]
   ];
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, public global: GlobalService) { 
+    this.locations = global.trees.map((x: any) => ([
+      x.rawMetadata.name, 
+      x.rawMetadata.latitude, 
+      x.rawMetadata.longitude
+    ]))
+  }
   ngAfterViewInit(): void {
     // customElements.whenDefined("leaflet-new2").then(_=>{
     //   readyElement();
@@ -64,7 +71,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       navigator.geolocation.getCurrentPosition((position)=>{
         console.log('position', position);
         this.position.lat = position.coords.latitude
-        this.position.long = position.coords.latitude
+        this.position.long = position.coords.longitude
       })
     } else {
       console.log("No permission")
@@ -88,7 +95,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
       element._map.panTo(new L.LatLng(this.locations[0][1], this.locations[0][2]));
       element._map.setZoom(9)
-    }, 3000)
+    }, 500)
     
   }
 

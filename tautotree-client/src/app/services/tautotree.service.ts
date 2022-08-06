@@ -22,7 +22,7 @@ export class TautotreeService {
 
   postTautoTree() {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "bearer 6956f101bb1c3225e5645a511349f5310121f145d341a1c2f7fff3ad83256a252743cdca239ce3ed4357d0ce9e147ed6b9ec2109e81e4219f90b645a7cfd90b026c92ce973d75bd32f1e8bec94f7fc83029f0d881b130525f08f6fd1f30b8d99761444a1ce4b5f8648f0ba583ba3e5de9041b5fe1a4b337609ac9f940da6338a");
+    myHeaders.append("Authorization", "bearer 3a229f340a9a121fc6989b0dbf2d9dc3726cd504cc7d3fc788b1bd744e62356baad9cc2c7d65d130b8490b23fefddf0a79e168d14a9f63374b93b4f97d815fb3368387da3942b1b2bee765ee9973e940c6320cfcd940ae5c938e0b718e23165c502124e9e81e06650b3aee72b76a2398af0b7e7570e307d65938c9bd83885b0d");
 
     var formdata = new FormData();
     formdata.append("image", this.treeInstance.image, this.treeInstance.name);

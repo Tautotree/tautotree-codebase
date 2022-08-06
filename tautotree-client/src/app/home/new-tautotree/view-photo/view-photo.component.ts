@@ -17,7 +17,7 @@ export class ViewPhotoComponent implements OnInit, AfterViewInit {
   model: any
   maxPredictions: any;
   treePercent: number = 0;
-  
+  loading = false;
 
   constructor(public tautoTree: TautotreeService) {
 
@@ -62,6 +62,7 @@ export class ViewPhotoComponent implements OnInit, AfterViewInit {
   }
 
   async predict() {
+    this.loading = true
     const prediction = await this.model.predict(this.image.nativeElement);
 
     for (let i = 0; i < this.maxPredictions; i++) {
@@ -70,6 +71,7 @@ export class ViewPhotoComponent implements OnInit, AfterViewInit {
             console.log(this.treePercent)
         }
     }
+    this.loading = false;
 
     // if (this.treePercent < 0.5) {
     //   (this.button.nativeElement as HTMLButtonElement).disabled = true;
