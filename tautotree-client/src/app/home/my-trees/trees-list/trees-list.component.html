@@ -1,11 +1,17 @@
 <div class="tl-container">
-    <button nz-button nzType="primary" nzShape="circle">
+    <!-- <button nz-button nzType="primary" nzShape="circle">
         <a routerLink="/home/new-tautotree">
             <span class="material-symbols-outlined">add</span>
         </a>
-    </button>
-    <div class="tl-body" style="padding: 10px;">
-        <img [routerLink]="ind + ''" style="max-width: 100%; border: 10px solid black; border-radius: 20px; margin: auto; margin-top: 10px; margin-bottom: 10px; box-sizing: border-box;" *ngFor="let i of g.trees; let ind = index" [src]="i.media[0].gateway" alt="">
-
+    </button> -->
+    <div class="tl-body" style="padding: 10px; ">
+        <div *ngFor="let i of g.trees; let ind = index" [routerLink]="ind + ''" style="display: flex; border-bottom: 1px solid black;">
+            <img  style="max-width: 100%; border: 1px solid black; border-radius: 20px; margin: auto; margin-top: 10px; margin-bottom: 10px; box-sizing: border-box;" [src]="i.media[0].gateway" alt="">
+            <div class="info">
+                <h5>{{i.rawMetadata.title}}</h5>
+                <div style="font-size: x-small;">{{i.rawMetadata.description}}</div>
+            </div>     
+            
+        </div>
     </div>
 </div>

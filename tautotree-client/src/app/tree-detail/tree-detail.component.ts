@@ -11,6 +11,8 @@ export class TreeDetailComponent implements OnInit {
 
   id: number = -1
 
+  pf = parseInt
+
   constructor(private route: ActivatedRoute, public global: GlobalService) { 
     route.paramMap.subscribe((value)=>{
       if (value.get('id'))
